@@ -68,9 +68,9 @@ The command removes all the Kubernetes components associated with the chart and 
 | apisix.extraEnvVars | list | `[]` | extraEnvVars An array to add extra env vars e.g: extraEnvVars:   - name: FOO     value: "bar"   - name: FOO2     valueFrom:       secretKeyRef:         name: SECRET_NAME         key: KEY |
 | apisix.hostNetwork | bool | `false` |  |
 | apisix.httpRouter | string | `"radixtree_host_uri"` | Defines how apisix handles routing: - radixtree_uri: match route by uri(base on radixtree) - radixtree_host_uri: match route by host + uri(base on radixtree) - radixtree_uri_with_parameter: match route by uri with parameters |
-| apisix.image.pullPolicy | string | `"IfNotPresent"` | Apache APISIX image pull policy |
-| apisix.image.repository | string | `"apache/apisix"` | Apache APISIX image repository |
-| apisix.image.tag | string | `"3.6.0-debian"` | Apache APISIX image tag Overrides the image tag whose default is the chart appVersion. |
+| apisix.image.pullPolicy | string | `"IfNotPresent"` | API7 image pull policy |
+| apisix.image.repository | string | `"api7/api7-gateway"` | API7 image repository |
+| apisix.image.tag | string | `"3.2.3.1"` | API7 image tag Overrides the image tag whose default is the chart appVersion. |
 | apisix.kind | string | `"Deployment"` | Use a `DaemonSet` or `Deployment` |
 | apisix.luaModuleHook | object | `{"configMapRef":{"mounts":[{"key":"","path":""}],"name":""},"enabled":false,"hookPoint":"","luaPath":""}` | Whether to add a custom lua module |
 | apisix.luaModuleHook.configMapRef | object | `{"mounts":[{"key":"","path":""}],"name":""}` | configmap that stores the codes |
