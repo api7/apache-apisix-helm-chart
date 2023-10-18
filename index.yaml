@@ -27,6 +27,28 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: 3.2.3-1
+    created: "2023-10-18T06:23:42.563627532Z"
+    dependencies:
+    - condition: etcd.enabled
+      name: etcd
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.7.7
+    description: A Helm chart for API7
+    digest: 0f56e393e5d4ccfed5835de004bd7b82e1b2532f4d14821d2d1ed1a1e58fe481
+    icon: https://apache.org/logos/res/apisix/apisix.png
+    maintainers:
+    - name: tao12345666333
+    name: api7
+    sources:
+    - https://github.com/apache/apisix-helm-chart
+    type: application
+    urls:
+    - https://github.com/api7/apache-apisix-helm-chart/releases/download/api7-1.7.3/api7-1.7.3.tgz
+    version: 1.7.3
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 3.2.3-1
     created: "2023-10-18T06:14:42.079605898Z"
     dependencies:
     - condition: etcd.enabled
@@ -67,4 +89,4 @@ entries:
     urls:
     - https://github.com/api7/apache-apisix-helm-chart/releases/download/api7-1.7.1/api7-1.7.1.tgz
     version: 1.7.1
-generated: "2023-10-18T06:14:42.079628498Z"
+generated: "2023-10-18T06:23:42.563703633Z"
