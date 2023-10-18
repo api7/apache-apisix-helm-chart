@@ -45,16 +45,6 @@ dependencies:
     version: 8.7.7
     repository: https://charts.bitnami.com/bitnami
     condition: etcd.enabled
-  - name: apisix-dashboard
-    version: 0.8.1
-    repository: https://charts.api7.ai/
-    condition: dashboard.enabled
-    alias: dashboard
-  - name: apisix-ingress-controller
-    version: 0.12.2
-    repository: https://charts.api7.ai/
-    condition: ingress-controller.enabled
-    alias: ingress-controller
 
 maintainers:
   - name: tao12345666333
