@@ -100,7 +100,7 @@ apisix:
 
   image:
     # -- API7 image repository
-    repository: api7/api7-gateway
+    repository: asia-east2-docker.pkg.dev/molten-verve-356604/api7/api7-gateway
     # -- API7 image pull policy
     pullPolicy: IfNotPresent
     # -- API7 image tag
