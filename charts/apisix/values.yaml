@@ -100,12 +100,12 @@ apisix:
 
   image:
     # -- Apache APISIX image repository
-    repository: apache/apisix
+    repository: asia-east2-docker.pkg.dev/molten-verve-356604/api7/api7-gateway
     # -- Apache APISIX image pull policy
     pullPolicy: IfNotPresent
     # -- Apache APISIX image tag
     # Overrides the image tag whose default is the chart appVersion.
-    tag: 3.6.0-debian
+    tag: 3.2.3.1
 
   # -- Use a `DaemonSet` or `Deployment`
   kind: Deployment
