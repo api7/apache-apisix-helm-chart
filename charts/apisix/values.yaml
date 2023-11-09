@@ -99,13 +99,13 @@ apisix:
   customizedConfig: {}
 
   image:
-    # -- API7 image repository
-    repository: asia-east2-docker.pkg.dev/molten-verve-356604/api7/api7-gateway
-    # -- API7 image pull policy
+    # -- Apache APISIX image repository
+    repository: apache/apisix
+    # -- Apache APISIX image pull policy
     pullPolicy: IfNotPresent
-    # -- API7 image tag
+    # -- Apache APISIX image tag
     # Overrides the image tag whose default is the chart appVersion.
-    tag: 3.2.3.1
+    tag: 3.6.0-debian
 
   # -- Use a `DaemonSet` or `Deployment`
   kind: Deployment
@@ -634,6 +634,28 @@ etcd:
     port: 2379
 
   replicaCount: 3
+
+dashboard:
+  enabled: false
+  config:
+    conf:
+      etcd:
+        # -- Supports defining multiple etcd host addresses for an etcd cluster
+        endpoints:
+          - apisix-etcd:2379
+        # -- apisix configurations prefix
+        prefix: "/apisix"
+        # -- Specifies etcd basic auth username if enable etcd auth
+        username: ~
+        # -- Specifies etcd basic auth password if enable etcd auth
+        password: ~
+
+# -- Ingress controller configuration
+ingress-controller:
+  enabled: false
+  config:
+    apisix:
+      adminAPIVersion: "v3"
 
 vault:
   # -- Enable or disable the vault integration
