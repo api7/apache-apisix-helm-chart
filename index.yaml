@@ -26,6 +26,38 @@ entries:
   - annotations:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
+    appVersion: 3.6.0
+    created: "2023-11-09T02:09:57.547692773Z"
+    dependencies:
+    - condition: etcd.enabled
+      name: etcd
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.7.7
+    - alias: dashboard
+      condition: dashboard.enabled
+      name: apisix-dashboard
+      repository: https://charts.apiseven.com
+      version: 0.8.1
+    - alias: ingress-controller
+      condition: ingress-controller.enabled
+      name: apisix-ingress-controller
+      repository: https://charts.apiseven.com
+      version: 0.12.2
+    description: A Helm chart for API7
+    digest: fe46fb607b8b9fb8a22ef40d866ae9c499fef3c699a029064de63564084c9b20
+    icon: https://apache.org/logos/res/apisix/apisix.png
+    maintainers:
+    - name: tao12345666333
+    name: api7
+    sources:
+    - https://github.com/api7/apache-apisix-helm-chart
+    type: application
+    urls:
+    - https://github.com/api7/apache-apisix-helm-chart/releases/download/api7-1.7.4/api7-1.7.4.tgz
+    version: 1.7.4
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
     appVersion: 3.2.3-1
     created: "2023-10-18T06:23:42.563627532Z"
     dependencies:
@@ -89,4 +121,41 @@ entries:
     urls:
     - https://github.com/api7/apache-apisix-helm-chart/releases/download/api7-1.7.1/api7-1.7.1.tgz
     version: 1.7.1
-generated: "2023-10-18T06:23:42.563703633Z"
+  apisix-dashboard:
+  - apiVersion: v2
+    appVersion: 3.0.0
+    created: "2023-11-09T02:09:57.704280084Z"
+    description: A Helm chart for Apache APISIX Dashboard
+    digest: 420b6ff4a0c5664e4c1f2575059e5b8590e93813baf5075382ccd93d88bad551
+    icon: https://apache.org/logos/res/apisix/apisix.png
+    maintainers:
+    - name: tao12345666333
+    name: apisix-dashboard
+    type: application
+    urls:
+    - https://github.com/api7/apache-apisix-helm-chart/releases/download/apisix-dashboard-0.8.1/apisix-dashboard-0.8.1.tgz
+    version: 0.8.1
+  apisix-ingress-controller:
+  - annotations:
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.7.0
+    created: "2023-11-09T02:09:57.872189929Z"
+    description: Apache APISIX Ingress Controller for Kubernetes
+    digest: 2a0950b7931d3ba6abc585be7e662078ea7a53759dbabfbabe54254765f95bf0
+    icon: https://apache.org/logos/res/apisix/apisix.png
+    keywords:
+    - ingress
+    - apisix
+    - nginx
+    - crd
+    maintainers:
+    - name: tao12345666333
+    name: apisix-ingress-controller
+    sources:
+    - https://github.com/apache/apisix-helm-chart
+    type: application
+    urls:
+    - https://github.com/api7/apache-apisix-helm-chart/releases/download/apisix-ingress-controller-0.12.2/apisix-ingress-controller-0.12.2.tgz
+    version: 0.12.2
+generated: "2023-11-09T02:09:57.872214986Z"
