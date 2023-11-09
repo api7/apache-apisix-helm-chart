@@ -38,7 +38,7 @@ version: 1.7.4
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: 3.6.0
 sources:
-  - https://github.com/apache/apisix-helm-chart
+  - https://github.com/api7/apache-apisix-helm-chart
 
 dependencies:
   - name: etcd
@@ -47,12 +47,12 @@ dependencies:
     condition: etcd.enabled
   - name: apisix-dashboard
     version: 0.8.1
-    repository: https://charts.api7.ai
+    repository: https://charts.apiseven.com
     condition: dashboard.enabled
     alias: dashboard
   - name: apisix-ingress-controller
     version: 0.12.2
-    repository: https://charts.api7.ai
+    repository: https://charts.apiseven.com
     condition: ingress-controller.enabled
     alias: ingress-controller
 
