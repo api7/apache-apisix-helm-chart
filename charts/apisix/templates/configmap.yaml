@@ -112,9 +112,9 @@ data:
 
       proxy_mode: {{ $proxy_mode }}
 
-      {{- if (and .Values.gateway.stream.enabled (or (gt (len .Values.gateway.stream.tcp) 0) (gt (len .Values.gateway.stream.udp) 0))) }}
+      {{- if or (index .Values "ingress-controller" "enabled") (and .Values.gateway.stream.enabled (or (gt (len .Values.gateway.stream.tcp) 0) (gt (len .Values.gateway.stream.udp) 0))) }}
       stream_proxy:                 # TCP/UDP proxy
-        {{- if (gt (len .Values.gateway.stream.tcp) 0) }}
+        {{- if or (index .Values "ingress-controller" "enabled") (gt (len .Values.gateway.stream.tcp) 0) }}
         tcp:                        # TCP proxy port list
           {{- if gt (len .Values.gateway.stream.tcp) 0}}
           {{- range .Values.gateway.stream.tcp }}
@@ -131,7 +131,7 @@ data:
           - 9100
           {{- end }}
         {{- end }}
-        {{- if (gt (len .Values.gateway.stream.udp) 0) }}
+        {{- if or (index .Values "ingress-controller" "enabled") (gt (len .Values.gateway.stream.udp) 0) }}
         udp:                        # UDP proxy port list
           {{- if gt (len .Values.gateway.stream.udp) 0}}
           {{- range .Values.gateway.stream.udp }}
@@ -296,7 +296,6 @@ data:
 
     deployment:
       role: {{ .Values.deployment.role }}
-      {{- if or (eq .Values.deployment.role "traditional") (eq .Values.deployment.role "control_plane") }}
 
       {{- if eq .Values.deployment.role "traditional" }}
       role_traditional:
@@ -308,6 +307,12 @@ data:
         config_provider: etcd
       {{- end }}
 
+      {{- if eq .Values.deployment.role "data_plane" }}
+      role_data_plane:
+        config_provider: etcd
+      {{- end }}
+
+      {{- if not (eq .Values.deployment.role "data_plane") }}
       admin:
         allow_admin:    # http://nginx.org/en/docs/http/ngx_http_access_module.html#allow
         {{- if .Values.admin.allow.ipList }}
@@ -315,6 +320,9 @@ data:
           - {{ $ips }}
         {{- end }}
         {{- else }}
+          - 0.0.0.0/0
+        {{- end}}
+        {{- if or (index .Values "ingress-controller" "enabled") .Values.dashboard.enabled  }}
           - 0.0.0.0/0
         {{- end}}
         #   - "::/64"
@@ -344,8 +352,8 @@ data:
             key: {{ .Values.admin.credentials.viewer }}
             {{- end }}
             role: viewer
+      {{- end }}
 
-      {{- if not (eq .Values.deployment.role "data_plane") }}
       etcd:
       {{- if .Values.etcd.enabled }}
         host:                          # it's possible to define multiple etcd hosts addresses of the same etcd cluster.
@@ -370,13 +378,7 @@ data:
           verify: {{ .Values.etcd.auth.tls.verify }}
           sni: "{{ .Values.etcd.auth.tls.sni }}"
         {{- end }}
-    {{- end }}
-    {{- end }}
       {{- end }}
 
-      {{- if eq .Values.deployment.role "data_plane" }}
-      role_data_plane:
-        config_provider: etcd
-      {{- end }}
-
+      
 {{- end }}

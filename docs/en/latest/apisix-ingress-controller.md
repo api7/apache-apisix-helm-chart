@@ -32,7 +32,7 @@ title: Apache APISIX Ingress Controller Helm Chart
 To install apisix-ingress-controller which release name is `apisix-ingress-controller`:
 
 ```bash
-helm repo add apisix https://charts.api7.ai/
+helm repo add apisix https://charts.apiseven.com
 helm repo update
 helm install apisix-ingress-controller apisix/apisix-ingress-controller --namespace ingress-apisix --create-namespace
 ```
