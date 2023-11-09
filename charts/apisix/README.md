@@ -18,7 +18,7 @@ This chart bootstraps all the components needed to run Apache APISIX on a Kubern
 To install the chart with the release name `my-apisix`:
 
 ```sh
-helm repo add apisix https://charts.apiseven.com
+helm repo add apisix https://charts.api7.ai/
 helm repo update
 
 helm install [RELEASE_NAME] apisix/apisix --namespace ingress-apisix --create-namespace
@@ -68,9 +68,9 @@ The command removes all the Kubernetes components associated with the chart and 
 | apisix.extraEnvVars | list | `[]` | extraEnvVars An array to add extra env vars e.g: extraEnvVars:   - name: FOO     value: "bar"   - name: FOO2     valueFrom:       secretKeyRef:         name: SECRET_NAME         key: KEY |
 | apisix.hostNetwork | bool | `false` |  |
 | apisix.httpRouter | string | `"radixtree_host_uri"` | Defines how apisix handles routing: - radixtree_uri: match route by uri(base on radixtree) - radixtree_host_uri: match route by host + uri(base on radixtree) - radixtree_uri_with_parameter: match route by uri with parameters |
-| apisix.image.pullPolicy | string | `"IfNotPresent"` | Apache APISIX image pull policy |
-| apisix.image.repository | string | `"apache/apisix"` | Apache APISIX image repository |
-| apisix.image.tag | string | `"3.6.0-debian"` | Apache APISIX image tag Overrides the image tag whose default is the chart appVersion. |
+| apisix.image.pullPolicy | string | `"IfNotPresent"` | API7 image pull policy |
+| apisix.image.repository | string | `"asia-east2-docker.pkg.dev/molten-verve-356604/api7/api7-gateway"` | API7 image repository |
+| apisix.image.tag | string | `"3.2.3.1"` | API7 image tag Overrides the image tag whose default is the chart appVersion. |
 | apisix.kind | string | `"Deployment"` | Use a `DaemonSet` or `Deployment` |
 | apisix.luaModuleHook | object | `{"configMapRef":{"mounts":[{"key":"","path":""}],"name":""},"enabled":false,"hookPoint":"","luaPath":""}` | Whether to add a custom lua module |
 | apisix.luaModuleHook.configMapRef | object | `{"mounts":[{"key":"","path":""}],"name":""}` | configmap that stores the codes |
@@ -115,11 +115,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | customPlugins.plugins[0].configMap | object | `{"mounts":[{"key":"the-file-name","path":"mount-path"}],"name":"configmap-name"}` | plugin codes can be saved inside configmap object. |
 | customPlugins.plugins[0].configMap.mounts | list | `[{"key":"the-file-name","path":"mount-path"}]` | since keys in configmap is flat, mountPath allows to define the mount path, so that plugin codes can be mounted hierarchically. |
 | customPlugins.plugins[0].configMap.name | string | `"configmap-name"` | name of configmap. |
-| dashboard.config.conf.etcd.endpoints | list | `["apisix-etcd:2379"]` | Supports defining multiple etcd host addresses for an etcd cluster |
-| dashboard.config.conf.etcd.password | string | `nil` | Specifies etcd basic auth password if enable etcd auth |
-| dashboard.config.conf.etcd.prefix | string | `"/apisix"` | apisix configurations prefix |
-| dashboard.config.conf.etcd.username | string | `nil` | Specifies etcd basic auth username if enable etcd auth |
-| dashboard.enabled | bool | `false` |  |
 | deployment.mode | string | `"traditional"` | Apache APISIX deployment mode Optional: traditional, decoupled  ref: https://apisix.apache.org/docs/apisix/deployment-modes/ |
 | deployment.role | string | `"traditional"` | Deployment role Optional: traditional, data_plane, control_plane  ref: https://apisix.apache.org/docs/apisix/deployment-modes/ |
 | discovery.enabled | bool | `false` | Enable or disable Apache APISIX integration service discovery |
@@ -179,7 +174,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | gateway.type | string | `"NodePort"` | Apache APISIX service type for user access itself |
 | global.imagePullSecrets | list | `[]` | Global Docker registry secret names as an array |
 | global.secrets | list | `[]` | Secrets to be created with apisix |
-| ingress-controller | object | `{"config":{"apisix":{"adminAPIVersion":"v3"}},"enabled":false}` | Ingress controller configuration |
 | initContainer.image | string | `"busybox"` | Init container image |
 | initContainer.securityContext | object | `{}` | Set the securityContext for the init container |
 | initContainer.tag | float | `1.28` | Init container tag |
